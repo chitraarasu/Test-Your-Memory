@@ -23,7 +23,7 @@ function nextSequence() {
     $("#level-title").text("Level " + level);
 }
 
-$(".btn").on("click", handler);
+$(".cbtn").on("click", handler);
 
 function handler() {
 
@@ -56,13 +56,24 @@ var level = 0;
 
 var started = false;
 
-$(document).on("keypress", function () {
+// $(document).on("keypress", function () {
+
+//     if (!started) {
+//         $("#level-title").text("Level " + level);
+//         nextSequence();
+//         started = true;
+//     }
+// });
+
+var starting = document.getElementById("start");
+starting.addEventListener("click", function(){
+    $(".Start__button").css("display", "none");
     if (!started) {
         $("#level-title").text("Level " + level);
         nextSequence();
         started = true;
     }
-});
+})
 
 function checkAnswer(currentLevel) {
 
@@ -84,7 +95,7 @@ function checkAnswer(currentLevel) {
         var audio = new Audio("sounds/wrong.mp3");
         audio.play();
 
-        $("h1").text("Game Over, Press Any Key to Restart");
+        $("h1").text("Game Over, Refresh to Restart. Score = "+level);
         startOver();
     }
 }
